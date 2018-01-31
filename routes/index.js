@@ -13,17 +13,24 @@ var storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage }).single('file');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/estate/uploadImg', upload.single('file'), function(req, res) {
-  res.json({
-    error: false,
-    result: req.file.filename
+router.post('/estate/uploadImg', function(req, res) {
+  upload(req, res, function (err) {
+    if (err) {
+      console.log(err);
+      return
+    } else {
+      res.json({
+        error: false,
+        result: req.file.filename
+      });
+    }
   });
 });
 
