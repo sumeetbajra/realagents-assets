@@ -20,6 +20,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/images/estates', function(req, res, next) {
+  const params = Object.keys(req.query).map(function(k) {
+    return encodeURIComponent(k) + "=" + encodeURIComponent(req.query[k]);
+  }).join('&');
+  res.redirect('/images/estates/default.jpg?' + params)
+});
+
 router.post('/estate/uploadImg', function(req, res) {
   upload(req, res, function (err) {
     if (err) {
