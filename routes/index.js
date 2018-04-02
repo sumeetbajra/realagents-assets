@@ -17,7 +17,7 @@ const upload = multer({ storage }).single('file');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Realagents' });
 });
 
 router.get('/images/estates', function(req, res, next) {
